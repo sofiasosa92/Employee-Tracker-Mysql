@@ -19,11 +19,12 @@ VALUES ("Network Systems Engineer", 80000, 1),
  ("Transportation Director Asst.", 30000, 4);
  
 INSERT INTO employee
-(first_name, last_name, role_id)
+(first_name, last_name, role_id, manager_id)
 VALUES 
 ("Sonia", "Sosa", ),
 ("Luz", "Muniz", ),
-("Jaime", "Tellez", ),("Daniel", "Halerumal", ),
+("Jaime", "Tellez", ),
+("Daniel", "Halerumal", ),
 ("Nala", "Burns", ),
 ("Penelope", "Wallace", ),
 ("Austin", "Leon", ),
