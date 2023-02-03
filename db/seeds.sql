@@ -21,16 +21,16 @@ VALUES ("Network Systems Engineer", 80000, 1),
 INSERT INTO employee
 (first_name, last_name, role_id, manager_id)
 VALUES 
-("Sonia", "Sosa", ),
-("Luz", "Muniz", ),
-("Jaime", "Tellez", ),
-("Daniel", "Halerumal", ),
-("Nala", "Burns", ),
-("Penelope", "Wallace", ),
-("Austin", "Leon", ),
-("Damien", "Perez", ),
-("Luca", "Abrego", ),
-("Faith", "Cason", ),
-("Stefania", "Janka", ),
-("Aki", "Ingram", );
+("Sonia", "Sosa", 1),
+("Luz", "Muniz", 7),
+("Jaime", "Tellez", 3),
+("Daniel", "Halerumal", 6),
+("Nala", "Burns", 8),
+("Penelope", "Wallace", 2),
+("Austin", "Leon", 5),
+("Damien", "Perez", 9),
+("Luca", "Abrego", 4),
+("Faith", "Cason", 11),
+("Stefania", "Janka", 10),
+("Aki", "Ingram", 12);
 

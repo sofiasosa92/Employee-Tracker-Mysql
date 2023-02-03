@@ -5,15 +5,16 @@ const inquirer = require('inquirer')
 const mysql = require('mysql2')
 //require console.table
 const consoleTable = require('console.table')
+//require .env file
+require('dotenv').config()
 
 //connecting to mysql database
 const db = mysql.createConnection(
     {
-        hots: 'localhost',
-        port: 3001,
-        user: 'root',
-        password: '',
-        database: 'employee_tracker',
+        hots: process.env.HOST,
+        user: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
     })
 
 db.connect((err) => {
