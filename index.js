@@ -20,8 +20,7 @@ const db = mysql.createConnection(
 db.connect((err) => {
     if (err) throw err;
     console.log(`####CONNECTED TO DATABASE####`);
-
-    init()
+    init();
 })
 
 function init() {
@@ -58,16 +57,6 @@ function loadMainPrompts() {
                 {
                     name: "View all Employees by Role",
                     value: "view_Employees_by_Role"
-                },
-
-                {
-                    name: "View all Employees",
-                    value: "view_Employees"
-                },
-
-                {
-                    name: "View all Employees by Departments",
-                    value: "view_Employees_by_department"
                 },
 
                 {
@@ -108,7 +97,7 @@ function loadMainPrompts() {
         }
     ])
 
-    //Calling function depending on the choice
+        //Calling function depending on the choice
         .then(answers => {
             let choice = answers.choice;
             switch (choice) {
@@ -124,24 +113,12 @@ function loadMainPrompts() {
                     viewAllEmployees();
                     break;
 
-                case "view_Employees_by_Department":
-                    viewAllEmployeesByDepartment();
-                    break;
-
-                case "view_Employees_by_Role":
-                    viewAllEmployeesByRole();
-                    break;
-
-                case "view_Employees":
-                    view_Employees();
-                    break;
-
-                case "view_Employees_by_department":
-                    view_Employees_by_department();
-                    break;
-
                 case "add_department":
                     add_department();
+                    break;
+
+                case "remove_department":
+                    remove_department();
                     break;
 
                 case "add_role":
@@ -167,36 +144,73 @@ function loadMainPrompts() {
         });
 }
 
-//View all department function
+//View all departments
 function viewAllDepartments() {
-    db.query(`SELECT * FROM department`, (err, data) => {
-        console.table(data)
-        init()
-    })
+    db.query(`SELECT * FROM department`, function (err, data) {
+        console.table(data);
+        init();
+    });
 }
 
-//View all roles function
+//View all roles
 function viewAllRoles() {
-    db.query(`SELECT * FROM role`, (err, data) => {
-        console.table(data)
-        init()
-    })
+    db.query(`SELECT * FROM role`, function (err, data) {
+        console.table(data);
+        init();
+    });
 }
 
-//View all roles employees
+//View all employees
 function viewAllEmployees() {
-    db.query(`SELECT * FROM employee`, (err, data) => {
-        console.table(data)
-        init()
-    })
+    db.query(`SELECT * FROM employee`, function (err, data) {
+        console.table(data);
+        init();
+    });
 }
 
-function viewAllEmployeesByDepartment() {
-    db.query(`SELECT * FROM employee`, (err, data) => {
-        console.table(data)
-        init()
-    })
+
+//Add department 
+function add_department() {    
+    inquirer.prompt(questions.add_department).then(data =>
+        {
+        db.query(`INSERT INTO department (name) VALUES (?)`, [data.departmentName], function (err, results) {
+            console.log(`${data.departmentName}  Created`);
+            viewALLDepartments();
+        });
+        });
 }
+
+
+//Remove department
+
+//Add role 
+function add_role() {    
+    inquirer.prompt(questions.add_role).then(data =>
+        {
+        db.query(`INSERT INTO role (title, salary, deparment_id) VALUES (?, ?, ?)`, [data.newRole], function (err, results) {
+            console.log(`${data.newRole}  Created`);
+            viewAllRoles();
+        });
+        });
+}
+//Add employee
+function add_employee() {    
+    inquirer.prompt(questions.add_employee).then(data =>
+        {
+        db.query(`INSERT INTO employee (first_name, last_name, manager_id, role_id) VALUES (?, ?, ?, ?)`, [data.newEmployee], function (err, results) {
+            console.log(`${data.newEmployee}  Created`);
+            viewAllEmployees();
+        });
+        });
+}
+//Remove employee
+
+//Update employee role
+
+//Exit
+
+
+
 
 
 
